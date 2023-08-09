@@ -1,0 +1,13 @@
+#   Place this file in location you defin in utilityVM.path   #
+# ########################################################### #
+
+utilityVM:
+  ip: 192.168.209.129             # Host this service you are executing on.
+  port: 9495                      # Default is 9495. If using a different port, change it. 
+  path: /root/dockerimages        # Absolute path of images location.
+
+harbor:
+  ip: 10.10.11.237                 # Harbor ip to push images to.
+  user: admin                      # Harbor username
+  pass: Harbor12345                # Harbor password
+  reponame: dishran                # Repo on harbor to push images to.
