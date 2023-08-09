@@ -30,19 +30,20 @@ DockerPortal streamlines the process of pushing Docker images to a remote reposi
 
 1. Download the latest release binary for your operating system from the [Releases](https://github.com/yourusername/dockerportal/releases) page.
 2. Make the binary file executable:
-   ```sh
-   chmod +x dockerportal
+  ```sh
+     chmod +x dockerportal```
 Move the binary to a directory included in your system's PATH, e.g., /usr/local/bin:
-mv dockerportal /usr/local/bin/
+
+```mv dockerportal /usr/local/bin/```
 
 
 Usage
 Create a new folder for your DockerPortal setup:
 
-mkdir my-dockerportal
+```mkdir my-dockerportal
 cd my-dockerportal
 Start the DockerPortal wormhole server:
-dockerportal start
+dockerportal start```
 
 
 Follow the prompts to provide the necessary configuration details, including the remote image repository server.
