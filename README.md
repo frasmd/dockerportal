@@ -36,29 +36,26 @@ Move the binary to a directory included in your system's PATH, e.g., /usr/local/
 ```mv dockerportal /usr/local/bin/```
 
 
-Usage
+### Usage
 Create a new folder for your DockerPortal setup:
 
-```mkdir my-dockerportal
-cd my-dockerportal
+```mkdir my-dockerportal```
+```cd my-dockerportal```
+
 Start the DockerPortal wormhole server:
-dockerportal start```
-
-
-Follow the prompts to provide the necessary configuration details, including the remote image repository server.
+```dockerportal start```
 
 Place your Docker files in the created folder. DockerPortal will automatically tag and push these images to the remote repository based on your configuration.
 
-Configuration
+### Configuration
+
 DockerPortal uses a configuration file named userio.yml to specify the remote server and other settings. Refer to the Configuration Guide for more information on setting up and customizing your configuration.
 
-Contributing
+### Contributing
 We welcome contributions from the community! If you'd like to contribute, please refer to the Contributing Guidelines.
 
-License
+### License
 DockerPortal is open-source software licensed under the MIT License.
 
-Contact
-For any questions or support, please create an issue or contact us on LinkedIn.
-
-Replace the placeholders (`yourusername`, `my-dockerportal`, etc.) with actual details relevant to your project. Make sure to provide clear instructions and explanations to help users understand how to use and contribute to your project.
+### Contact
+For any questions or support, please create an issue or contact on LinkedIn or Github.
