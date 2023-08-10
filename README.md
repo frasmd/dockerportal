@@ -30,8 +30,7 @@ DockerPortal streamlines the process of pushing Docker images to a remote reposi
 
 1. Download the latest release binary for your operating system from the [Releases](https://github.com/yourusername/dockerportal/releases) page.
 2. Make the binary file executable:
-  ```sh
-     chmod +x dockerportal```
+  ```chmod +x dockerportal```
 Move the binary to a directory included in your system's PATH, e.g., /usr/local/bin:
 
 ```mv dockerportal /usr/local/bin/```
