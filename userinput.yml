@@ -2,9 +2,10 @@
 # ########################################################### #
 
 utilityVM:
-  ip: 192.168.209.129             # Host this service you are executing on.
-  port: 9495                      # Default is 9495. If using a different port, change it. 
-  path: /root/dockerimages        # Absolute path of images location.
+  ip: 192.168.0.105             # Host this service you are executing on.
+  port: 2375                      # Default is 9495. If using a different port, change it. 
+  # path: /root/dockerimages        # Absolute path of images location.
+  path: /Users/foopcule/Downloads/dockerImage
 
 harbor:
   ip: 10.10.11.237                 # Harbor ip to push images to.
