@@ -32,8 +32,10 @@ class ImageApiServer:
         utils = Utils()
         url = utils._url_builder(self.baseurl, api)
         print("URL Ready {0}, Posting the image".format(url))
-        res = re.post(url, data=image_data, stream=True)
+        res = re.post(url, data=image_data) #, stream=True)
+        print(res.status_code, res)
         resdata = json.loads(res.text)
+        print(resdata)
         match = regexsh.search(
                     r'(^Loaded image ID: |^Loaded image: )(.+)$',
                     resdata['stream']
