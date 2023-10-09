@@ -9,13 +9,13 @@ class FileServer:
         # Constructor to initialize the FileServer object with user inputs
         self._folder = userinputs["utilityVM"]["path"]
         self._userinputs = userinputs
-        self._images = self.__getFiles()
+        # self._images = self.__getFiles()
 
-    def UploadImages(self):
+    def UploadImages(self, images):
         # Method to upload images to the API server
-        print(self._folder, self._images)
+        # print(self._folder, self._images)
         imgobj = ImageApiServer(self._userinputs)
-        for imagetar in self._images:
+        for imagetar in images:
             print("Uploading image: {}".format(imagetar))
             self.__apiserverCall(imagetar, imgobj)
     
@@ -31,9 +31,9 @@ class FileServer:
     
     def __apiserverCall(self, imagetar, imgobj):
         # Private method to make API server calls to load and push images
-        with open("{}/{}".format(self._folder, imagetar), 'rb') as f:
+        with open("{}".format(imagetar), 'rb') as f:
             data = f.read()
-    
+            
         imagename = imgobj.load_image(data)
     
         tagging_status = imgobj.tag_repo(imagename, self._userinputs["harbor"]["reponame"])
@@ -53,6 +53,7 @@ class FileServer:
         backup_folder = "/root/backup"
         if not os.path.exists(backup_folder):
             os.makedirs(backup_folder)
-        new_location = os.path.join(backup_folder, os.path.basename(imagename))
-        shutil.move("{}/{}".format(self._folder, imagename), new_location)
+        stripImageName = imagename.split("/")[-1]
+        new_location = os.path.join(backup_folder, os.path.basename(stripImageName))
+        shutil.move(imagename, new_location)
         print("Image {} moved to backup".format(imagename))
