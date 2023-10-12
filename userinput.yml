@@ -2,7 +2,7 @@
 # ########################################################### #
 
 utilityVM:
-  ip: 192.168.0.107             # Host this service you are executing on.
+  ip: 192.168.0.100             # Host this service you are executing on.
   port: 2375                      # Default is 9495. If using a different port, change it. 
   path: /root/dockerimages        # Absolute path of images location.
 

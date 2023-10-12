@@ -59,6 +59,15 @@ Place your Docker files in the created folder. DockerPortal will automatically t
 
 DockerPortal uses a configuration file named userinput.yml to specify the remote server and other settings. Refer to the Configuration Guide for more information on setting up and customizing your configuration.
 
+Note: To expose docker api for load and tag images first enable tcp port at the following location
+
+``` 
+root@pc:/lib/systemd/system# cat /lib/systemd/system/docker.service | grep ExecStart
+ExecStart=/usr/bin/dockerd -H fd:// -H=tcp://0.0.0.0:2375
+root@pc:/lib/systemd/system#
+
+```
+
 ### Contributing
 We welcome contributions from the community! If you'd like to contribute, please refer to the Contributing Guidelines.
 
