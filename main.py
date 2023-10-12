@@ -1,27 +1,70 @@
-# Import the required classes and modules
-from apiserver import ImageApiServer
-from fileserver import FileServer
+from time import sleep
+import logging
+from watchdog.observers import Observer
+from watchdog.events import LoggingEventHandler, FileSystemEventHandler
+from threading import Thread
+from argparse import ArgumentParser
 import yaml
 from yaml.loader import SafeLoader
-import argparse
+from fileserver import FileServer
 
-# Check if the script is being run as the main module
-if __name__ == '__main__':
 
-    # Parse command-line arguments using argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--file", dest="input_file", required=True, help="Path to input YAML file.")
+def __getData(file):
+    with open(file,"r") as f:
+        data = yaml.load(f, Loader=SafeLoader)
+    return data
+
+def process_new_file(files):
+    print(f"Processing file: {files}")
+    
+    parser = ArgumentParser()
+    parser.add_argument("-f", "--file", dest="input_file", required=True, help="Path to the YAML file.")
     args = parser.parse_args()
 
-    # Open the input YAML file and load its content using the SafeLoader
-    with open(args.input_file,"r") as f:
-        data = yaml.load(f, Loader=SafeLoader)
-
-    # Create a FileServer object and pass the YAML data to it
+    data = __getData(args.input_file)
+    
     fobj = FileServer(data)
+    fobj.UploadImages([files])
 
-    # Call the UploadImages() method of the FileServer object to upload images
-    fobj.UploadImages()
 
-    # Print a message indicating that all images are uploaded in the target
-    print("All the images are uploaded in the target.")
+class onMyWatch:
+
+    def __init__(self, watchPath) -> None:
+        self.observer = Observer()
+        self.watchDirectory = watchPath
+
+    def run(self):
+        event_handler = Handler()
+        self.observer.schedule(event_handler, self.watchDirectory, recursive=True)
+        self.observer.start()
+
+        try:
+            while True:
+                sleep(5)
+        except:
+            self.observer.stop()
+            print("Observer stopped")
+        
+        self.observer.join()
+
+
+class Handler(FileSystemEventHandler):
+    @staticmethod
+    def on_any_event(event):
+        if event.is_directory:
+            return None
+        
+        elif event.event_type == 'created':
+            print("watchdog recieved created event - %s" %event.src_path)
+            thread = Thread(target=process_new_file, args=(event.src_path,))
+            thread.start()
+        elif event.event_type == 'modified':
+            print("Watchdog received modified event - %s"%event.src_path)
+
+def startEvent():
+    parser = ArgumentParser()
+    parser.add_argument("-f", "--file", dest="input_file", required=True, help="Path to the YAML file.")
+    args = parser.parse_args()
+    data = __getData(args.input_file) 
+    watch = onMyWatch(data["utilityVM"]["path"])
+    watch.run()

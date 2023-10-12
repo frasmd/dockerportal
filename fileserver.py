@@ -1,7 +1,7 @@
 import os
 from apiserver import ImageApiServer
 import shutil
-import magic
+#import magic
 
 # Define a class for handling file server operations
 class FileServer:
@@ -9,11 +9,9 @@ class FileServer:
         # Constructor to initialize the FileServer object with user inputs
         self._folder = userinputs["utilityVM"]["path"]
         self._userinputs = userinputs
-        # self._images = self.__getFiles()
 
     def UploadImages(self, images):
         # Method to upload images to the API server
-        # print(self._folder, self._images)
         imgobj = ImageApiServer(self._userinputs)
         for imagetar in images:
             print("Uploading image: {}".format(imagetar))

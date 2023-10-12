@@ -28,28 +28,36 @@ DockerPortal streamlines the process of pushing Docker images to a remote reposi
 
 ### Installation
 
-1. Download the latest release binary for your operating system from the [Releases](https://github.com/yourusername/dockerportal/releases) page.
+1. Download the latest release binary for your operating system from the [Releases](https://github.com/yourusername/dockerpctl/releases) page.
 2. Make the binary file executable:
-  ```chmod +x dockerportal```
+  ```chmod +x dockerpctl```
 Move the binary to a directory included in your system's PATH, e.g., /usr/local/bin:
 
-```mv dockerportal /usr/local/bin/```
+```mv dockerpctl /usr/local/bin/```
+
+### Installation using source
+
+1. Download latest sourcecode.
+2. Go to sourcecode directory.
+3. Install using following command 
+  ```python3 -m pip install .```
 
 
 ### Usage
 Create a new folder for your DockerPortal setup:
 
-```mkdir my-dockerportal```
-```cd my-dockerportal```
+```mkdir my-dockerpctl```
+```cd my-dockerpctl```
 
 Start the DockerPortal wormhole server:
-```dockerportal start```
+```dockerpctl -f <userinputfile>```
+example: dockerpctl -f userinput.yml
 
 Place your Docker files in the created folder. DockerPortal will automatically tag and push these images to the remote repository based on your configuration.
 
 ### Configuration
 
-DockerPortal uses a configuration file named userio.yml to specify the remote server and other settings. Refer to the Configuration Guide for more information on setting up and customizing your configuration.
+DockerPortal uses a configuration file named userinput.yml to specify the remote server and other settings. Refer to the Configuration Guide for more information on setting up and customizing your configuration.
 
 ### Contributing
 We welcome contributions from the community! If you'd like to contribute, please refer to the Contributing Guidelines.
