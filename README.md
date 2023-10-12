@@ -28,7 +28,7 @@ DockerPortal streamlines the process of pushing Docker images to a remote reposi
 
 ### Installation
 
-1. Download the latest release binary for your operating system from the [Releases](https://github.com/yourusername/dockerpctl/releases) page.
+1. Download the latest release binary for your operating system from the [Releases](https://github.com/frasmd/dockerportal/releases) page.
 2. Make the binary file executable:
   ```chmod +x dockerpctl```
 Move the binary to a directory included in your system's PATH, e.g., /usr/local/bin:
